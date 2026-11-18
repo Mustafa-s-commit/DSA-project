@@ -1,32 +1,115 @@
-# React + TypeScript + Vite
+# Expression Lab
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Expression Lab is an interactive data structures and algorithms visualizer for converting mathematical expressions between infix, postfix, and prefix notation. It demonstrates Shunting-Yard and stack-based conversion algorithms step by step.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Convert infix expressions to postfix notation with the Shunting-Yard algorithm.
+- Convert postfix and prefix expressions to infix notation.
+- Visualize stack operations and each conversion step.
+- Step backward, step forward, or play through an animation.
+- Validate expressions and show helpful parsing errors.
+- Choose from built-in example expressions.
+- View operator precedence and associativity for infix conversions.
+- Responsive interface for desktop and mobile devices.
 
-## React Compiler
+## Supported Operators
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Operator | Description |
+| --- | --- |
+| `+` | Addition |
+| `-` | Subtraction |
+| `*` | Multiplication |
+| `/` | Division |
+| `^` | Exponentiation |
 
-## Expanding the Oxlint configuration
+Exponentiation uses right associativity. Parentheses are supported for infix expressions.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Getting Started
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+### Prerequisites
+
+- Node.js 20 or newer
+- npm
+
+### Installation
+
+```bash
+npm install
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### Development
+
+```bash
+npm run dev
+```
+
+Open the local URL printed by Vite, usually `http://localhost:5173`.
+
+### Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+## Example Expressions
+
+| Conversion | Example |
+| --- | --- |
+| Infix to postfix | `A+B*C` |
+| Infix to postfix | `(A+B)*C` |
+| Postfix to infix | `AB+C*` |
+| Prefix to infix | `*+ABC` |
+
+## Available Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Landing page |
+| `/postfix` | Convert infix expressions to postfix |
+| `/infix` | Convert postfix or prefix expressions to infix |
+| `/about` | Learn how the conversion algorithms work |
+
+## Project Structure
+
+```text
+src/
+├── components/
+│   ├── landing/       # Landing page visuals
+│   ├── layout/        # Navigation and application shell
+│   └── workspace/     # Inputs, controls, stack and step visualizations
+├── engine/
+│   ├── infixToPostfix.ts
+│   ├── postfixToInfix.ts
+│   ├── prefixToInfix.ts
+│   ├── tokenizer.ts
+│   ├── validators.ts
+│   └── operators.ts
+├── hooks/
+│   └── useAlgorithmPlayer.ts
+├── pages/
+│   ├── LandingPage.tsx
+│   ├── InfixPage.tsx
+│   ├── PostfixPage.tsx
+│   └── AboutPage.tsx
+├── App.tsx
+└── main.tsx
+```
+
+## Technology Stack
+
+- React 19
+- TypeScript
+- Vite
+- React Router
+- Framer Motion
+- Lucide React
+- Tailwind CSS
+- Oxlint
